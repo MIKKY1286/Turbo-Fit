@@ -3,35 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TURBO FIT </title>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>TurboFit</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
-    <script type="module" defer src="./test.js"></script>
+    <!-- <script type="module" defer src="./test.js"></script> -->
 </head>
 <body>
-    <!-- ======== FIRST NAVBAR ======== -->
+
+<!-- ======== NAVIGATION ======== -->
+<nav class="navbar top">
+    <div class="logo">
+        <a href="index.html">
+            <img style="height: 50px;" src="./images/turbofit_logo-removebg-preview.png" alt="TurboFit">
+        </a>
+    </div>
+    <ul class="nav-links">
+        <li><a href="./index.html" class="active">Home</a></li>
+        <li><a href="./index.html#best-deal">Shop</a></li>
+        <li><a href="./profile page/profile.html">Profile</a></li>
+        <li><a href="./signup page/signup.html">Sign Up</a></li>
+    </ul>
+    <div class="nav-buttons">
+        <a href="./signin page/signin.html" id="loginSignup" class="login-btn">Login</a>
+
+        <a href="" id="logoutBtn" class="logout-btn" style="display: none;">Logout</a>
+        <a href="./cart page/cart.html" class="cart-btn">
+            <i class='bx bx-cart-alt'></i><span id="cart-count">0</span>
+        </a>
+    </div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+</nav>
 
 
-    <nav class="navbar">
-        <div class="logo"><img style="height: 50px;" src="./images/turbofit_logo-removebg-preview.png" alt="TURBOfit"></div>
-
-        <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Shop</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-
-        <div class="nav-buttons">
-            <button class="login-btn">Login</button>
-            <button class="cart-btn"><i class='bx bx-cart-alt' ></i><span id="cart-count">0</span></button>
-        </div>
-
-        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-    </nav>
-
-    <!-- ======== SECOND NAVBAR ======== -->
-
+    <!-- ======== SEARCH BAR ======== -->
     <div class="navbar-2">
         <div class="search-container">
             <select class="category-dropdown">
@@ -47,12 +51,9 @@
         </div>
     </div>
 
-    <!-- ========= HERO SECTION ========= -->
-
+    <!-- ======== HERO SECTION ======== -->
     <section class="hero-section">
-        <!-- First Row -->
         <div class="row">
-            <!-- Column 1: Category Links -->
             <div class="column categories">
                 <ul class="category-list">
                     <li><a href="#">Electronics</a></li>
@@ -69,60 +70,24 @@
                     <li><a href="#">Pets</a></li>
                 </ul>
             </div>
-    
-            <!-- Column 2: Mixed Cards -->
             <div class="column">
-                <div class="big-card" >🔥 Hot Deal</div>
+                <div class="big-card">🔥 Hot Deal</div>
                 <div class="small-cards">
-                    <div class="small-card one" >💎 Best Sellers</div>
-                    <div class="small-card two" >🎁 New Arrivals</div>
+                    <div class="small-card one">💎 Best Sellers</div>
+                    <div class="small-card two">🎁 New Arrivals</div>
                 </div>
             </div>
-    
-            <!-- Column 3: Stacked Cards -->
             <div class="column">
-                <div class="stacked-card three" >🚀 Flash Sale</div>
-                <div class="stacked-card four" >🎉 Trending Now</div>
-            </div>
-        </div>
-    
-        <!-- Second Row -->
-        <div class="row">
-            <!-- Featured Brands -->
-            <div class="column large-card">
-                <h2>🏆 Featured Brands</h2>
-                <div class="grid-container">
-                    <div class="grid-item">Nike</div>
-                    <div class="grid-item">Adidas</div>
-                    <div class="grid-item">Apple</div>
-                    <div class="grid-item">Samsung</div>
-                    <div class="grid-item">Sony</div>
-                    <div class="grid-item">Puma</div>
-                </div>
-            </div>
-    
-            <!-- Top Categories -->
-            <div class="column large-card">
-                <h2>📌 Top Categories</h2>
-                <div class="grid-container">
-                    <div class="grid-item">Smartphones</div>
-                    <div class="grid-item">Laptops</div>
-                    <div class="grid-item">Watches</div>
-                    <div class="grid-item">Shoes</div>
-                    <div class="grid-item">Furniture</div>
-                    <div class="grid-item">Gaming</div>
-                </div>
+                <div class="stacked-card three">🚀 Flash Sale</div>
+                <div class="stacked-card four">🎉 Trending Now</div>
             </div>
         </div>
     </section>
-    
-    <!-- =========== DEAL OF THE MONTH SECTION========== -->
 
-    <section class="best-deal">
+    <!-- ======== BEST DEAL SECTION ======== -->
+    <section id="best-deal" class="best-deal">
         <h2 class="section-title">🔥 Best Deal of the Month</h2>
-        
         <div class="deal-container">
-            <!-- Large Featured Deal -->
             <div class="deal-card large" style="background-image: url('./images/deal-of-the-month-1.png');">
                 <div class="overlay">
                     <h3>Smart Watch Series 9</h3>
@@ -130,8 +95,6 @@
                     <button class="buy-btn">Buy Now</button>
                 </div>
             </div>
-    
-            <!-- Smaller Deals -->
             <div class="small-deals">
                 <div class="deal-card small" style="background-image: url('./images/wireless\ headphone.png');">
                     <div class="overlay">
@@ -140,8 +103,7 @@
                         <button class="buy-btn">Shop Now</button>
                     </div>
                 </div>
-    
-                <div class="deal-card small" style="background-image: url('./images/gaming-mouse.jpg    ');">
+                <div class="deal-card small" style="background-image: url('./images/gaming-mouse.jpg');">
                     <div class="overlay">
                         <h3>Gaming Mouse</h3>
                         <p><span class="discount">30% OFF</span></p>
@@ -152,8 +114,7 @@
         </div>
     </section>
 
-    <!-- ======== ADS SECTION======== -->
-
+    <!-- ======== ADS SECTION ======== -->
     <div class="ad-section">
         <div class="trapezium"></div>
         <div class="ads-container">
@@ -162,52 +123,45 @@
             </div>
         </div>
     </div>
-    
 
-    <!-- ========= NAV & TAB SECTION========= -->
-    
+    <!-- ======== PRODUCT SECTION ======== -->
     <section class="product-section">
         <div class="container">
-            <h2>Our Products</h2>
+            <h2>OUR PRODUCT</h2>
             <div class="products">
                 <div class="product">
                     <img src="./images/product-1.jpg" alt="Product 1">
-                    <h3>Product Name 1</h3>
+                    <h3>Egale shirt</h3>
                     <p>High-quality material with great durability.</p>
                     <h4>$20.00</h4>
-                    <button class="add-to-cart">Add to Cart</button>
+                    <button class="add-to-cart" data-id="1" data-name="Egale shirt" data-price="$20.00" data-image="./images/product-1.jpg">Add to Cart</button>
                 </div>
                 <div class="product">
                     <img src="./images/lv-shoe.jpg" alt="Product 2">
-                    <h3>Product Name 2</h3>
+                    <h3>lv-shoe</h3>
                     <p>Stylish and comfortable shoes.</p>
                     <h4>$25.00</h4>
-                    <button class="add-to-cart">Add to Cart</button>
+                    <button class="add-to-cart" data-id="2" data-name="lv-shoe" data-price="$25.00" data-image="lv-shoe.jpg">Add to Cart</button>
                 </div>
                 <div class="product">
                     <img src="./images/lv-shirt.jpg" alt="Product 3">
-                    <h3>Product Name 3</h3>
+                    <h3>Lv-shirt</h3>
                     <p>Trendy shirts for any occasion.</p>
                     <h4>$30.00</h4>
-                    <button class="add-to-cart">Add to Cart</button>
+                    <button class="add-to-cart" data-id="3" data-name="lv-shirt" data-price="$30.00" data-image="./images/product-1.jpg">Add to Cart</button>
                 </div>
                 <div class="product">
                     <img src="./images/lvs-shoe.jpg" alt="Product 4">
-                    <h3>Product Name 4</h3>
+                    <h3>lvs-shoe</h3>
                     <p>Designed for ultimate comfort and style.</p>
                     <h4>$35.00</h4>
-                    <button class="add-to-cart">Add to Cart</button>
+                    <button class="add-to-cart" data-id="4" data-name="lvs-shoe" data-price="35.00" data-image="lvs-shoe.jpg">Add to Cart</button>
                 </div>
             </div>
         </div>
     </section>
-    
-    
-    
-
 
     <!-- ======= BANNER SECTION ======= -->
-
     <section class="banner">
         <div class="banner-content">
             <h1>🔥 Exclusive Deals Just for You!</h1>
@@ -216,8 +170,7 @@
         </div>
     </section>
 
-    <!-- ======== NEWSLETTER SECTION ========= -->
-
+    <!-- ======== NEWSLETTER SECTION ======== -->
     <section class="newsletter">
         <div class="newsletter-container">
             <h2>Stay Updated!</h2>
@@ -226,17 +179,116 @@
                 <input type="email" id="email-input" placeholder="Enter your email" required>
                 <button type="submit">Subscribe</button>
             </form>
-            <p id="email-error" class="error-message"></p>
         </div>
     </section>
+
+    <!-- ======== FOOTER SECTION ======== -->
+
+    <footer>
+        <!-- First Row -->
+        <div class="footer-row first-row">
+            <div class="column">
+                <h4>About Us</h4>
+                <p>TurboFit is the ultimate store for fitness & activewear.</p>
+                <h4><a href="tel:+2347083034571">0708 303 4571</a></h4>
+                <div class="social-icons">
+                    <a class="facebook" href="#"><i class='bx bxl-facebook-circle'></i>
+                    </a>
+                    <a class="twitter" href=""><i class='bx bxl-twitter'></i></a>
+                    <a class="instagram" href=""><i class='bx bxl-instagram' ></i></a>
+                    <a class="youtube" href="#"><i class='bx bxl-youtube' ></i></a>
+                    <a class="tiktok" href=""><i class='bx bxl-tiktok' ></i></a>
+                </div>
+            </div>
+            <div class="column">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Order Tracking</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="column">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="#">Men</a></li>
+                    <li><a href="#">Women</a></li>
+                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#">Shoes</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Sale</a></li>
+                </ul>
+            </div>
+            <div class="column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Affiliates</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Gift Cards</a></li>
+                </ul>
+            </div>
+            <div class="column">
+                <h4>Help</h4>
+                <ul>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Find a Store</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">Payment Options</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Live Chat</a></li>
+                </ul>
+            </div>
+        </div>
     
+        <!-- Second Row -->
+        <div class="footer-row second-row">
+            <div class="column">
+                <select class="currency-select">
+                    <option>USD</option>
+                    <option>EUR</option>
+                    <option>GBP</option>
+                    <option>NGN</option>
+                    <option>CAD</option>
+                </select>
+                <select class="country-select">
+                    <option>United States</option>
+                    <option>United Kingdom</option>
+                    <option>Nigeria</option>
+                    <option>Canada</option>
+                    <option>Germany</option>
+                </select>
+            </div>
+            <div class="column">
+                <h4>Subscribe & Get 10% Off Your First Order</h4>
+                <div id="newsletter-form" class="subscribe-box">
+                    <input id="email-input" type="email" placeholder="Enter your email address">
+                    <button>Subscribe</button>
+                </div>
+                <p class="disclaimer">By subscribing, you accept our <a href="#">Policy</a>.</p>
+            </div>
+        </div>
     
+        <!-- Third Row -->
+        <div class="footer-row third-row">
+            <div class="column">© 2024 TurboFit. All Rights Reserved.</div>
+            <div class="column payment-methods">
+                <img src="./images/visa- logo.png" alt="Visa">
+                <img src="./images/master-card-logo.png" alt="MasterCard">
+                <img src="./images/paypal-logo.png" alt="PayPal">
+                <img src="./images/apple-pay-logo.png" alt="Apple Pay">
+            </div>
+            <div class="column"><a href="#">Mobile Site</a> <a href="#top"><i class='bx bxs-to-top'></i></a></div>
+        </div>
+    </footer>
     
-    
-    
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
-<!-- <script src="cart.js"></script> -->
+
+
+    <script type="module" src="./script.js"></script>
 </body>
 </html>

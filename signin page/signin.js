@@ -52,7 +52,7 @@ async function signInUser(e) {
         alert("Sign In successful"); // Display a success message when sign-in is successful
         
         // Redirect to the landing page after successful sign-in
-        window.location.href = "../test.html"; // Change this URL to your actual landing page URL
+        window.location.href = "../index.html"; // Change this URL to your actual landing page URL
     } catch (error) {
         // Log any errors that occur during sign-in
         console.log(error.message);
