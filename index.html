@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TURBO FIT </title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="./style.css">
+    <script type="module" defer src="./test.js"></script>
+</head>
+<body>
+    <!-- ======== FIRST NAVBAR ======== -->
+
+
+    <nav class="navbar">
+        <div class="logo"><img style="height: 50px;" src="./images/turbofit_logo-removebg-preview.png" alt="TURBOfit"></div>
+
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+
+        <div class="nav-buttons">
+            <button class="login-btn">Login</button>
+            <button class="cart-btn"><i class='bx bx-cart-alt' ></i><span id="cart-count">0</span></button>
+        </div>
+
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    </nav>
+
+    <!-- ======== SECOND NAVBAR ======== -->
+
+    <div class="navbar-2">
+        <div class="search-container">
+            <select class="category-dropdown">
+                <option value="all">All Categories</option>
+                <option value="clothing">Clothing</option>
+                <option value="electronics">Electronics</option>
+                <option value="home-garden">Home & Garden</option>
+                <option value="beauty">Beauty</option>
+                <option value="sports">Sports</option>
+            </select>
+            <input type="text" class="search-input" placeholder="Search for products...">
+            <button class="search-btn">🔍</button>
+        </div>
+    </div>
+
+    <!-- ========= HERO SECTION ========= -->
+
+    <section class="hero-section">
+        <!-- First Row -->
+        <div class="row">
+            <!-- Column 1: Category Links -->
+            <div class="column categories">
+                <ul class="category-list">
+                    <li><a href="#">Electronics</a></li>
+                    <li><a href="#">Fashion</a></li>
+                    <li><a href="#">Home & Garden</a></li>
+                    <li><a href="#">Health & Beauty</a></li>
+                    <li><a href="#">Sports & Outdoors</a></li>
+                    <li><a href="#">Automotive</a></li>
+                    <li><a href="#">Toys & Games</a></li>
+                    <li><a href="#">Groceries</a></li>
+                    <li><a href="#">Office Supplies</a></li>
+                    <li><a href="#">Jewelry</a></li>
+                    <li><a href="#">Watches</a></li>
+                    <li><a href="#">Pets</a></li>
+                </ul>
+            </div>
+    
+            <!-- Column 2: Mixed Cards -->
+            <div class="column">
+                <div class="big-card" >🔥 Hot Deal</div>
+                <div class="small-cards">
+                    <div class="small-card one" >💎 Best Sellers</div>
+                    <div class="small-card two" >🎁 New Arrivals</div>
+                </div>
+            </div>
+    
+            <!-- Column 3: Stacked Cards -->
+            <div class="column">
+                <div class="stacked-card three" >🚀 Flash Sale</div>
+                <div class="stacked-card four" >🎉 Trending Now</div>
+            </div>
+        </div>
+    
+        <!-- Second Row -->
+        <div class="row">
+            <!-- Featured Brands -->
+            <div class="column large-card">
+                <h2>🏆 Featured Brands</h2>
+                <div class="grid-container">
+                    <div class="grid-item">Nike</div>
+                    <div class="grid-item">Adidas</div>
+                    <div class="grid-item">Apple</div>
+                    <div class="grid-item">Samsung</div>
+                    <div class="grid-item">Sony</div>
+                    <div class="grid-item">Puma</div>
+                </div>
+            </div>
+    
+            <!-- Top Categories -->
+            <div class="column large-card">
+                <h2>📌 Top Categories</h2>
+                <div class="grid-container">
+                    <div class="grid-item">Smartphones</div>
+                    <div class="grid-item">Laptops</div>
+                    <div class="grid-item">Watches</div>
+                    <div class="grid-item">Shoes</div>
+                    <div class="grid-item">Furniture</div>
+                    <div class="grid-item">Gaming</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- =========== DEAL OF THE MONTH SECTION========== -->
+
+    <section class="best-deal">
+        <h2 class="section-title">🔥 Best Deal of the Month</h2>
+        
+        <div class="deal-container">
+            <!-- Large Featured Deal -->
+            <div class="deal-card large" style="background-image: url('./images/deal-of-the-month-1.png');">
+                <div class="overlay">
+                    <h3>Smart Watch Series 9</h3>
+                    <p><span class="discount">50% OFF</span> - Limited Time Offer!</p>
+                    <button class="buy-btn">Buy Now</button>
+                </div>
+            </div>
+    
+            <!-- Smaller Deals -->
+            <div class="small-deals">
+                <div class="deal-card small" style="background-image: url('./images/wireless\ headphone.png');">
+                    <div class="overlay">
+                        <h3>Wireless Headphones</h3>
+                        <p><span class="discount">40% OFF</span></p>
+                        <button class="buy-btn">Shop Now</button>
+                    </div>
+                </div>
+    
+                <div class="deal-card small" style="background-image: url('./images/gaming-mouse.jpg    ');">
+                    <div class="overlay">
+                        <h3>Gaming Mouse</h3>
+                        <p><span class="discount">30% OFF</span></p>
+                        <button class="buy-btn">Grab Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======== ADS SECTION======== -->
+
+    <div class="ad-section">
+        <div class="trapezium"></div>
+        <div class="ads-container">
+            <div class="ads">
+                🔥 Big Sale! Up to 50% Off! 🚀 | 🛒 Free Shipping on Orders Over $100! | 🎁 New Arrivals Just Landed!
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- ========= NAV & TAB SECTION========= -->
+    
+    <section class="product-section">
+        <div class="container">
+            <h2>Our Products</h2>
+            <div class="products">
+                <div class="product">
+                    <img src="./images/product-1.jpg" alt="Product 1">
+                    <h3>Product Name 1</h3>
+                    <p>High-quality material with great durability.</p>
+                    <h4>$20.00</h4>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./images/lv-shoe.jpg" alt="Product 2">
+                    <h3>Product Name 2</h3>
+                    <p>Stylish and comfortable shoes.</p>
+                    <h4>$25.00</h4>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./images/lv-shirt.jpg" alt="Product 3">
+                    <h3>Product Name 3</h3>
+                    <p>Trendy shirts for any occasion.</p>
+                    <h4>$30.00</h4>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="./images/lvs-shoe.jpg" alt="Product 4">
+                    <h3>Product Name 4</h3>
+                    <p>Designed for ultimate comfort and style.</p>
+                    <h4>$35.00</h4>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+
+
+    <!-- ======= BANNER SECTION ======= -->
+
+    <section class="banner">
+        <div class="banner-content">
+            <h1>🔥 Exclusive Deals Just for You!</h1>
+            <p>Shop the latest trends and enjoy massive discounts.</p>
+            <a href="#" class="banner-btn">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- ======== NEWSLETTER SECTION ========= -->
+
+    <section class="newsletter">
+        <div class="newsletter-container">
+            <h2>Stay Updated!</h2>
+            <p>Subscribe to our newsletter and never miss an update.</p>
+            <form id="newsletter-form">
+                <input type="email" id="email-input" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+            <p id="email-error" class="error-message"></p>
+        </div>
+    </section>
+    
+    
+    
+    
+    
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+<!-- <script src="cart.js"></script> -->
+</body>
+</html>
