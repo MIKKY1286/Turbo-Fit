@@ -121,10 +121,13 @@ document.addEventListener("DOMContentLoaded", function () {
             const product = {
                 id: this.dataset.id,
                 name: this.dataset.name,
-                price: parseFloat(this.dataset.price),
+                image: this.dataset.image,
+                price: this.dataset.price,
                 quantity: quantity,
                 timestamp: new Date()
             };
+            console.log(product);
+            
             addToCart(product);
         });
     });

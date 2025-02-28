@@ -1,19 +1,25 @@
-// Import Firebase modules
+// Firebase Modular Imports
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
-import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-storage.js";
+import { 
+    getAuth, onAuthStateChanged, signOut, updatePassword, updateProfile 
+} from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+import { 
+    getFirestore, doc, getDoc, setDoc, collection, query, where, getDocs 
+} from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+import { 
+    getStorage, ref, uploadBytes, getDownloadURL 
+} from "https://www.gstatic.com/firebasejs/11.1.0/firebase-storage.js";
 
-// Firebase configuration
+// Firebase Configuration
 const firebaseConfig = {
     apiKey: "AIzaSyAt8l4aBhsjfigqhPupfC6Y6eE2Nyh-pGI",
     authDomain: "snaporia-207ae.firebaseapp.com",
     projectId: "snaporia-207ae",
-    storageBucket: "snaporia-207ae.firebasestorage.app",
+    storageBucket: "snaporia-207ae.appspot.com",
     messagingSenderId: "676150553528",
     appId: "1:676150553528:web:5d6b1063aaca60c28c7d4d",
     measurementId: "G-NVP2L3EX8P"
-  };
+};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -21,125 +27,189 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
+// Select Elements
+const loginSignup = document.getElementById("loginSignup");
+const logoutBtn = document.getElementById("logoutBtn");
+const cartCount = document.getElementById("cart-count");
+const profilePicInput = document.getElementById("profile-pic-input");
 
 // Function to Update Cart Count
 async function updateCartCount() {
+    const user = auth.currentUser;
+    if (!user) return;
+
     try {
-        const cartRef = collection(db, "cart");
-        const querySnapshot = await getDocs(cartRef);
-        let itemCount = 0;
+        const cartRef = doc(db, "carts", user.uid);
+        const cartSnap = await getDoc(cartRef);
 
-        querySnapshot.forEach(docSnap => {
-            let product = docSnap.data();
-            itemCount += product.quantity || 1; // Sum up the quantities of all items
-        });
-
-        if (cartCount) {
-            cartCount.textContent = itemCount.toString();
+        if (cartSnap.exists()) {
+            const cartData = cartSnap.data();
+            const itemCount = cartData.items ? cartData.items.length : 0;
+            if (cartCount) cartCount.textContent = itemCount;
+        } else {
+            if (cartCount) cartCount.textContent = "0";
         }
     } catch (error) {
-        console.error("Error updating cart count:", error);
+        console.error("Error fetching cart count:", error);
     }
 }
 
-
-// DOM Elements
-const profileName = document.getElementById("profileName");
-const profileEmail = document.getElementById("profileEmail");
-const profilePhone = document.getElementById("profilePhone");
-const profileWebsite = document.getElementById("profileWebsite");
-const profileAddress = document.getElementById("profileAddress");
-const profilePictureDisplay = document.getElementById("profilePictureDisplay");
-const profilePictureUpload = document.getElementById("profilePictureUpload");
-const uploadButton = document.getElementById("uploadButton");
-const profileImage = document.getElementById("profileImage");
-const profileDropdown = document.getElementById("profileDropdown");
-const logoutButton = document.getElementById("logoutButton");
-
-// Toggle Profile Dropdown
-profileImage.addEventListener("click", () => {
-    profileDropdown.style.display = profileDropdown.style.display === "block" ? "none" : "block";
-});
-
-// Close dropdown when clicking outside
-document.addEventListener("click", (event) => {
-    if (!profileImage.contains(event.target) && !profileDropdown.contains(event.target)) {
-        profileDropdown.style.display = "none";
-    }
-});
-
-// Log Out Function
-logoutButton.addEventListener("click", async () => {
-    try {
-        await signOut(auth);
-        Swal.fire({
-            icon: "success",
-            title: "Logged Out",
-            text: "You have been logged out successfully.",
-        }).then(() => {
-            window.location.href = "./index.html"; // Redirect to login page
-        });
-    } catch (error) {
-        Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Something went wrong while logging out.",
-        });
-        console.error("Error logging out:", error);
-    }
-});
-
-// Load user data
+// Check Auth State
 onAuthStateChanged(auth, async (user) => {
     if (user) {
+        document.getElementById("user-name").textContent = user.displayName || "No Name";
+        document.getElementById("user-email").textContent = user.email;
+        document.getElementById("profile-pic").src = user.photoURL || "default-avatar.png";
+        await updateCartCount();
+    } else {
+        window.location.href = "../signin page/signin.html"; // Redirect to signin page
+    }
+});
+
+// Handle Authentication State
+document.addEventListener("DOMContentLoaded", () => {
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            if (loginSignup) loginSignup.style.display = "none";
+            if (logoutBtn) logoutBtn.style.display = "block";
+            await updateCartCount();
+        } else {
+            if (loginSignup) loginSignup.style.display = "block";
+            if (logoutBtn) logoutBtn.style.display = "none";
+            if (cartCount) cartCount.textContent = "0";
+        }
+    });
+});
+
+// Logout Function
+if (logoutBtn) {
+    logoutBtn.addEventListener("click", async () => {
+        try {
+            await signOut(auth);
+            alert("You have logged out.");
+            window.location.reload();
+        } catch (error) {
+            console.error("Logout error:", error.message);
+        }
+    });
+}
+
+// Function to Update Profile Picture
+window.uploadProfilePicture = async () => {
+    const user = auth.currentUser;
+    if (!user) return alert("You need to log in first.");
+
+    if (!profilePicInput.files.length) return alert("Please select a file.");
+
+    const file = profilePicInput.files[0];
+    const storageRef = ref(storage, `profile_pictures/${user.uid}`);
+
+    try {
+        // Upload file to Firebase Storage
+        await uploadBytes(storageRef, file);
+
+        // Get the download URL
+        const photoURL = await getDownloadURL(storageRef);
+
+        // Update profile in Firebase Auth
+        await updateProfile(user, { photoURL });
+
+        // Update profile picture in Firestore
+        await setDoc(doc(db, "users", user.uid), { photoURL }, { merge: true });
+
+        // Update the profile picture on the UI
+        document.getElementById("profile-pic").src = photoURL;
+        alert("Profile picture updated!");
+    } catch (error) {
+        console.error("Error uploading profile picture:", error);
+        alert("Failed to upload profile picture. Try again.");
+    }
+};
+
+// Function to Show Sections
+window.showSection = async (section) => {
+    const content = document.getElementById("main-content");
+    if (section === "account-info") {
+        content.innerHTML = `
+            <h2>Account Info</h2>
+            <input type="text" id="name" placeholder="Full Name">
+            <input type="email" id="email" placeholder="Email" disabled>
+            <input type="text" id="phone" placeholder="Phone Number">
+            <button onclick="saveAccountInfo()">Save</button>
+        `;
+        loadAccountInfo();
+    } else if (section === "orders") {
+        content.innerHTML = `<h2>My Orders</h2><div id="orders-list">Loading...</div>`;
+        loadOrders();
+    } else if (section === "address") {
+        content.innerHTML = `
+            <h2>Edit Address</h2>
+            <input type="text" id="address-line1" placeholder="Address Line 1">
+            <input type="text" id="address-line2" placeholder="Address Line 2">
+            <input type="text" id="city" placeholder="City">
+            <input type="text" id="state" placeholder="State">
+            <input type="text" id="zip" placeholder="ZIP Code">
+            <button onclick="saveAddress()">Save Address</button>
+        `;
+        loadAddress();
+    } else if (section === "change-password") {
+        content.innerHTML = `
+            <h2>Change Password</h2>
+            <input type="password" id="new-password" placeholder="New Password">
+            <button onclick="changePassword()">Update Password</button>
+        `;
+    }
+};
+
+// Load Account Info
+async function loadAccountInfo() {
+    const user = auth.currentUser;
+    if (user) {
+        document.getElementById("email").value = user.email;
         const userDoc = await getDoc(doc(db, "users", user.uid));
         if (userDoc.exists()) {
-            const userData = userDoc.data();
-
-            // Update profile section
-            profileName.textContent = userData.fullName || "User Name";
-            profileEmail.textContent = user.email;
-            profilePhone.textContent = userData.phone || "Not provided";
-            profileWebsite.textContent = userData.website || "Not provided";
-            profileAddress.textContent = userData.street ? `${userData.street}, ${userData.city}, ${userData.state}, ${userData.zip}` : "Not provided";
-
-            // Load profile picture
-            if (userData.profilePicture) {
-                profilePictureDisplay.src = userData.profilePicture;
-                profileImage.querySelector("img").src = userData.profilePicture;
-            }
+            document.getElementById("name").value = userDoc.data().name || "";
+            document.getElementById("phone").value = userDoc.data().phone || "";
         }
-    } else {
-        window.location.href = "../signin page/signin.html"; // Redirect to login page if not authenticated
     }
-});
+}
 
-// Upload Profile Picture
-uploadButton.addEventListener("click", () => {
-    profilePictureUpload.click();
-});
+// Save Account Info
+window.saveAccountInfo = async () => {
+    const user = auth.currentUser;
+    if (!user) return;
 
-profilePictureUpload.addEventListener("change", async (event) => {
-    const file = event.target.files[0];
-    if (file) {
-        const user = auth.currentUser;
-        const storageRef = ref(storage, `profilePictures/${user.uid}`);
-        await uploadBytes(storageRef, file);
-        const downloadURL = await getDownloadURL(storageRef);
+    await setDoc(doc(db, "users", user.uid), {
+        name: document.getElementById("name").value,
+        phone: document.getElementById("phone").value
+    }, { merge: true });
 
-        // Update Firestore with the new profile picture URL
-        await updateDoc(doc(db, "users", user.uid), {
-            profilePicture: downloadURL,
-        });
+    alert("Account info updated!");
+};
 
-        // Update the displayed profile picture
-        profilePictureDisplay.src = downloadURL;
-        profileImage.querySelector("img").src = downloadURL;
+// Function to Save Address
+window.saveAddress = async () => {
+    const user = auth.currentUser;
+    if (!user) return alert("You need to log in first.");
 
-        Swal.fire({
-            icon: "success",
-            title: "Profile Picture Updated",
-            text: "Your profile picture has been updated successfully!",
-        });
+    const addressData = {
+        addressLine1: document.getElementById("address-line1").value,
+        addressLine2: document.getElementById("address-line2").value,
+        city: document.getElementById("city").value,
+        state: document.getElementById("state").value,
+        zip: document.getElementById("zip").value
+    };
+
+    await setDoc(doc(db, "users", user.uid), { address: addressData }, { merge: true });
+    alert("Address updated successfully!");
+};
+
+// Change Password
+window.changePassword = async () => {
+    const newPassword = document.getElementById("new-password").value;
+    const user = auth.currentUser;
+    if (user) {
+        await updatePassword(user, newPassword);
+        alert("Password updated!");
     }
-});
+};

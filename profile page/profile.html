@@ -3,34 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile - Snaporia</title>
-    <link rel="stylesheet" href="./profile.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Profile Dashboard</title>
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="./profile.css">
 </head>
 <body>
-    <header>
-<!-- ======== NAVIGATION ======== -->
-<nav class="navbar top">
+
+        <!-- ======== NAVIGATION ======== -->
+<nav class="navbar">
     <div class="logo">
-        <a href="index.html">
+        <a href="../test.html">
             <img style="height: 50px;" src="../images/turbofit_logo-removebg-preview.png" alt="TurboFit">
         </a>
     </div>
     <ul class="nav-links">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="./test.html#best-deal">Shop</a></li>
-        <li><a href="./profile page/profile.html">Profile</a></li>
-        <li><a href="./signup page/signup.html">Sign Up</a></li>
+        <li><a href="../index.html" class="active">Home</a></li>
+        <li><a href="../index.html#best-deal">Shop</a></li>
+        <li><a href="../profile page/profile.html">Profile</a></li>
+        <li><a href="../signup page/signup.html">Sign Up</a></li>
     </ul>
     <div class="nav-buttons">
-        <a href="./signin page/signin.html" id="loginSignup" class="login-btn">Login</a>
+        <a href="../signin page/signin.html" id="loginSignup" class="login-btn">Login</a>
 
         <a href="" id="logoutBtn" class="logout-btn" style="display: none;">Logout</a>
         <a href="./cart page/cart.html" class="cart-btn">
             <i class='bx bx-cart-alt'></i><span id="cart-count">0</span>
         </a>
+        <a href=""></a>
     </div>
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 </nav>
@@ -51,142 +50,131 @@
             <button class="search-btn">🔍</button>
         </div>
     </div>
-    </header>
-    <main>
-        <div class="container">
-            <div class="profile-card">
-                <div class="profile-header">
-                    <div class="profile-picture">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Profile Picture" id="profilePictureDisplay">
-                        <input type="file" id="profilePictureUpload" accept="image/*" style="display: none;">
-                        <button id="uploadButton" class="btn btn-primary">Upload Picture</button>
-                    </div>
-                    <h2 id="profileName">User Name</h2>
-                    <p id="profileEmail">user@example.com</p>
-                    <a style="text-decoration: none; :hover { text-decoration: line-through;}" href="../pupdate page/pupdate.html" class="btn btn-secondary">Edit Profile</a>
-                </div>
-                <div class="profile-details">
-                    <h3>Personal Details</h3>
-                    <div class="detail">
-                        <label>Phone:</label>
-                        <p id="profilePhone">Not provided</p>
-                    </div>
-                    <div class="detail">
-                        <label>Website:</label>
-                        <p id="profileWebsite">Not provided</p>
-                    </div>
-                    <div class="detail">
-                        <label>Address:</label>
-                        <p id="profileAddress">Not provided</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-    <footer>
-        <!-- First Row -->
-        <div class="footer-row first-row">
-            <div class="column">
-                <h4>About Us</h4>
-                <p>TurboFit is the ultimate store for fitness & activewear.</p>
-                <h4><a href="tel:+2347083034571">0708 303 4571</a></h4>
-                <div class="social-icons">
-                    <a class="facebook" href="#"><i class='bx bxl-facebook-circle'></i>
-                    </a>
-                    <a class="twitter" href=""><i class='bx bxl-twitter'></i></a>
-                    <a class="instagram" href=""><i class='bx bxl-instagram' ></i></a>
-                    <a class="youtube" href="#"><i class='bx bxl-youtube' ></i></a>
-                    <a class="tiktok" href=""><i class='bx bxl-tiktok' ></i></a>
-                </div>
-            </div>
-            <div class="column">
-                <h4>Customer Service</h4>
-                <ul>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">FAQs</a></li>
-                    <li><a href="#">Shipping & Returns</a></li>
-                    <li><a href="#">Order Tracking</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms & Conditions</a></li>
-                </ul>
-            </div>
-            <div class="column">
-                <h4>Shop</h4>
-                <ul>
-                    <li><a href="#">Men</a></li>
-                    <li><a href="#">Women</a></li>
-                    <li><a href="#">Accessories</a></li>
-                    <li><a href="#">Shoes</a></li>
-                    <li><a href="#">New Arrivals</a></li>
-                    <li><a href="#">Sale</a></li>
-                </ul>
-            </div>
-            <div class="column">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Sustainability</a></li>
-                    <li><a href="#">Affiliates</a></li>
-                    <li><a href="#">Press</a></li>
-                    <li><a href="#">Gift Cards</a></li>
-                </ul>
-            </div>
-            <div class="column">
-                <h4>Help</h4>
-                <ul>
-                    <li><a href="#">Support</a></li>
-                    <li><a href="#">Find a Store</a></li>
-                    <li><a href="#">Size Guide</a></li>
-                    <li><a href="#">Payment Options</a></li>
-                    <li><a href="#">Returns</a></li>
-                    <li><a href="#">Live Chat</a></li>
-                </ul>
-            </div>
-        </div>
-    
-        <!-- Second Row -->
-        <div class="footer-row second-row">
-            <div class="column">
-                <select class="currency-select">
-                    <option>USD</option>
-                    <option>EUR</option>
-                    <option>GBP</option>
-                    <option>NGN</option>
-                    <option>CAD</option>
-                </select>
-                <select class="country-select">
-                    <option>United States</option>
-                    <option>United Kingdom</option>
-                    <option>Nigeria</option>
-                    <option>Canada</option>
-                    <option>Germany</option>
-                </select>
-            </div>
-            <div class="column">
-                <h4>Subscribe & Get 10% Off Your First Order</h4>
-                <div id="newsletter-form" class="subscribe-box">
-                    <input id="email-input" type="email" placeholder="Enter your email address">
-                    <button>Subscribe</button>
-                </div>
-                <p class="disclaimer">By subscribing, you accept our <a href="#">Policy</a>.</p>
-            </div>
-        </div>
-    
-        <!-- Third Row -->
-        <div class="footer-row third-row">
-            <div class="column">© 2024 TurboFit. All Rights Reserved.</div>
-            <div class="column payment-methods">
-                <img src="../images/visa- logo.png" alt="Visa">
-                <img src="../images/master-card-logo.png" alt="MasterCard">
-                <img src="../images/paypal-logo.png" alt="PayPal">
-                <img src="../images/apple-pay-logo.png" alt="Apple Pay">
-            </div>
-            <div class="column"><a href="#">Mobile Site</a> <a href="#top"><i class='bx bxs-to-top'></i></a></div>
-        </div>
-    </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="module" src="./profile.js"></script>
+<!-- ========= PROFILE SECTION ========= -->
+ <div class="profile-container">
+    <div class="container">
+        <div class="sidebar">
+            <img id="profile-pic" src="../images/avatar-profile.jpeg" alt="Profile Picture">
+            <h3 id="user-name">User Name</h3>
+            <p id="user-email">user@example.com</p>
+            <button onclick="showSection('account-info')">Account Info →</button>
+            <button onclick="showSection('orders')">My Orders →</button>
+            <button onclick="showSection('address')">My Address →</button>
+            <button onclick="showSection('change-password')">Change Password →</button>
+        </div>
+        <div class="content" id="main-content">
+            <h2>Welcome to your dashboard</h2>
+            <p>Select an option from the left.</p>
+            <img src="../images/dashboard.png" alt="">
+        </div>
+    </div>
+    </div>
+
+ <!-- ============ FOOTER SECTION ============= -->
+ <footer>
+    <!-- First Row -->
+    <div class="footer-row first-row">
+        <div class="column">
+            <h4>About Us</h4>
+            <p>TurboFit is the ultimate store for fitness & activewear.</p>
+            <h4><a href="tel:+2347083034571">0708 303 4571</a></h4>
+            <div class="social-icons">
+                <a class="facebook" href="#"><i class='bx bxl-facebook-circle'></i>
+                </a>
+                <a class="twitter" href=""><i class='bx bxl-twitter'></i></a>
+                <a class="instagram" href=""><i class='bx bxl-instagram' ></i></a>
+                <a class="youtube" href="#"><i class='bx bxl-youtube' ></i></a>
+                <a class="tiktok" href=""><i class='bx bxl-tiktok' ></i></a>
+            </div>
+        </div>
+        <div class="column">
+            <h4>Customer Service</h4>
+            <ul>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">FAQs</a></li>
+                <li><a href="#">Shipping & Returns</a></li>
+                <li><a href="#">Order Tracking</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms & Conditions</a></li>
+            </ul>
+        </div>
+        <div class="column">
+            <h4>Shop</h4>
+            <ul>
+                <li><a href="#">Men</a></li>
+                <li><a href="#">Women</a></li>
+                <li><a href="#">Accessories</a></li>
+                <li><a href="#">Shoes</a></li>
+                <li><a href="#">New Arrivals</a></li>
+                <li><a href="#">Sale</a></li>
+            </ul>
+        </div>
+        <div class="column">
+            <h4>Company</h4>
+            <ul>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Sustainability</a></li>
+                <li><a href="#">Affiliates</a></li>
+                <li><a href="#">Press</a></li>
+                <li><a href="#">Gift Cards</a></li>
+            </ul>
+        </div>
+        <div class="column">
+            <h4>Help</h4>
+            <ul>
+                <li><a href="#">Support</a></li>
+                <li><a href="#">Find a Store</a></li>
+                <li><a href="#">Size Guide</a></li>
+                <li><a href="#">Payment Options</a></li>
+                <li><a href="#">Returns</a></li>
+                <li><a href="#">Live Chat</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Second Row -->
+    <div class="footer-row second-row">
+        <div class="column">
+            <select class="currency-select">
+                <option>USD</option>
+                <option>EUR</option>
+                <option>GBP</option>
+                <option>NGN</option>
+                <option>CAD</option>
+            </select>
+            <select class="country-select">
+                <option>United States</option>
+                <option>United Kingdom</option>
+                <option>Nigeria</option>
+                <option>Canada</option>
+                <option>Germany</option>
+            </select>
+        </div>
+        <div class="column">
+            <h4>Subscribe & Get 10% Off Your First Order</h4>
+            <div id="newsletter-form" class="subscribe-box">
+                <input id="email-input" type="email" placeholder="Enter your email address">
+                <button>Subscribe</button>
+            </div>
+            <p class="disclaimer">By subscribing, you accept our <a href="#">Policy</a>.</p>
+        </div>
+    </div>
+
+    <!-- Third Row -->
+    <div class="footer-row third-row">
+        <div class="column">© 2024 TurboFit. All Rights Reserved.</div>
+        <div class="column payment-methods">
+            <img src="../images/visa- logo.png" alt="Visa">
+            <img src="../images/master-card-logo.png" alt="MasterCard">
+            <img src="../images/paypal-logo.png" alt="PayPal">
+            <img src="../images/apple-pay-logo.png" alt="Apple Pay">
+        </div>
+        <div class="column"><a href="#">Mobile Site</a> <a href="#top"><i class='bx bxs-to-top'></i></a></div>
+    </div>
+</footer>
+
+<script src="./profile.js" type="module"></script>
 </body>
 </html>
