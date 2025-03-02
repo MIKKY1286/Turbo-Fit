@@ -431,6 +431,7 @@ body {
     font-size: 1em;
     cursor: pointer;
     transition: 0.3s;
+    text-decoration: none;
 }
 
 .buy-btn:hover {

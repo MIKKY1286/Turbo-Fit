@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TurboFit - CATEGORY </title>
+    <link rel="stylesheet" href="./product.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+        <!-- ======== NAVIGATION ======== -->
+<nav class="navbar">
+    <div class="logo">
+        <a href="../index.html">
+            <img style="height: 50px;" src="../images/turbofit_logo-removebg-preview.png" alt="TurboFit">
+        </a>
+    </div>
+    <ul class="nav-links">
+        <li><a href="../index.html" class="active">Home</a></li>
+        <li><a href="../index.html#best-deal">Shop</a></li>
+        <li><a href="../profile page/profile.html">Profile</a></li>
+        <li><a href="../signup page/signup.html">Sign Up</a></li>
+    </ul>
+    <div class="nav-buttons">
+        <a href="../signin page/signin.html" id="loginSignup" class="login-btn">Login</a>
+
+        <a href="" id="logoutBtn" class="logout-btn" style="display: none;">Logout</a>
+        <a href="../cart page/cart.html" class="cart-btn">
+            <i class='bx bx-cart-alt'></i><span id="cart-count">0</span>
+        </a>
+    </div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+</nav>
+
+
+    <!-- ======== SEARCH BAR ======== -->
+    <div class="navbar-2">
+        <div class="search-container">
+            <select class="category-dropdown">
+                <option value="all">All Categories</option>
+                <option value="clothing">Clothing</option>
+                <option value="electronics">Electronics</option>
+                <option value="home-garden">Home & Garden</option>
+                <option value="beauty">Beauty</option>
+                <option value="sports">Sports</option>
+            </select>
+            <input type="text" class="search-input" placeholder="Search for products...">
+            <button class="search-btn">🔍</button>
+        </div>
+    </div>
+
+<section class="hero">
+    <div class="container">
+        <div class="card left-card">
+            <!-- <h2>Left Card</h2> -->
+        </div>
+        <div class="card right-card">
+            <!-- <h2>Right Card</h2> -->
+        </div>
+    </div>
+</section>
+
+<!-- =========== PRODUCT CATEGORY ============ -->
+
+<section class="products-section">
+    <h2>Product Categories</h2>
+    <div class="products-grid">
+        <a href="./product.html#casual-shoes"><div class="product-card product1"><h3>Casual Shoes</h3></div></a>
+        <a href="./product.html#wrist-watch"><div class="product-card product2"><h3>Wrist Watches</h3></div></a>
+        <a href="./product.html#head-phones"><div class="product-card product3"><h3>Headphones</h3></div></a>
+        <a href="./product.html#backpacks"><div class="product-card product4"><h3>Backpacks</h3></div></a>
+        <a href="./product.html#Phones"><div class="product-card product5"><h3>Smartphones</h3></div></a>
+        <a href="./product.html#GLASSES"><div class="product-card product6"><h3>Sunglasses</h3></div></a>
+        <a href="./product.html#perfumes"><div class="product-card product7"><h3>Perfumes</h3></div></a>
+        <a href="./product.html#laptop"><div class="product-card product8"><h3>Laptops</h3></div></a>
+        <a href="./product.html#camera"><div class="product-card product9"><h3>Cameras</h3></div></a>
+        <a href="./product.html#console"><div class="product-card product10"><h3>Gaming Consoles</h3></div></a>
+    </div>
+</section>
+
+ <!-- ======== CASUAL SHOES SECTION ======== -->
+ <section class="product-section">
+    <div class="containers">
+        <h2 id="casual-shoes">Casual Shoes</h2>
+        <div class="productss">
+            <div class="product">
+                <img src="../images/casualshoe1.jpeg" alt="Product 1">
+                <h3>Egale shoe</h3>
+                <p>High-quality material with great durability.</p>
+                <h4>$20.00</h4>
+                <button class="add-to-cart" data-id="1" data-name="Egale shoe" data-price="20.00" data-image="./images/product-1.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/cassualshoe2.jpg" alt="Product 2">
+                <h3>lv-shoe</h3>
+                <p>Stylish and comfortable shoes.</p>
+                <h4>$25.00</h4>
+                <button class="add-to-cart" data-id="2" data-name="lv-shoe" data-price="25.00" data-image="lv-shoe.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/cassualshoe3.jpg" alt="Product 3">
+                <h3>Lt-sandals</h3>
+                <p>Trendy shirts for any occasion.</p>
+                <h4>$30.00</h4>
+                <button class="add-to-cart" data-id="3" data-name="lv-shirt" data-price="30.00" data-image="./images/product-1.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/cassualshoes4.jpg" alt="Product 4">
+                <h3>lvs-shoe</h3>
+                <p>Designed for ultimate comfort and style.</p>
+                <h4>$35.00</h4>
+                <button class="add-to-cart" data-id="4" data-name="lvs-shoe" data-price="35.00" data-image="lvs-shoe.jpg">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+ <!-- ======== WRIST WATCH SECTION ======== -->
+<section class="product-section">
+    <div class="containers">
+        <h2 id="wrist-watch">Wrist Watch</h2>
+        <div class="productss">
+            <div class="product">
+                <img src="../images/watch1.jpg" alt="Product 1">
+                <h3>Egale shirt</h3>
+                <p>High-quality material with great durability.</p>
+                <h4>$20.00</h4>
+                <button class="add-to-cart" data-id="1" data-name="Egale shirt" data-price="20.00" data-image="./images/product-1.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/watch3.jpg" alt="Product 2">
+                <h3>lv-shoe</h3>
+                <p>Stylish and comfortable shoes.</p>
+                <h4>$25.00</h4>
+                <button class="add-to-cart" data-id="2" data-name="lv-shoe" data-price="25.00" data-image="lv-shoe.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/watch2.jpg" alt="Product 3">
+                <h3>Lv-shirt</h3>
+                <p>Trendy shirts for any occasion.</p>
+                <h4>$30.00</h4>
+                <button class="add-to-cart" data-id="3" data-name="lv-shirt" data-price="30.00" data-image="./images/product-1.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/watch4.jpg" alt="Product 4">
+                <h3>lvs-shoe</h3>
+                <p>Designed for ultimate comfort and style.</p>
+                <h4>$35.00</h4>
+                <button class="add-to-cart" data-id="4" data-name="lvs-shoe" data-price="35.00" data-image="lvs-shoe.jpg">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+ <!-- ======== HEAD PHONES SECTION ======== -->
+<section class="product-section">
+    <div class="containers">
+        <h2 id="head-phones">Head Phones</h2>
+        <div class="productss">
+            <div class="product">
+                <img src="../images/headphone1.jpg" alt="Product 1">
+                <h3>Egale shirt</h3>
+                <p>High-quality material with great durability.</p>
+                <h4>$20.00</h4>
+                <button class="add-to-cart" data-id="1" data-name="Egale shirt" data-price="20.00" data-image="./images/product-1.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/headphone2.jpg" alt="Product 2">
+                <h3>lv-shoe</h3>
+                <p>Stylish and comfortable shoes.</p>
+                <h4>$25.00</h4>
+                <button class="add-to-cart" data-id="2" data-name="lv-shoe" data-price="25.00" data-image="lv-shoe.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/headphone3.webp" alt="Product 3">
+                <h3>Lv-shirt</h3>
+                <p>Trendy shirts for any occasion.</p>
+                <h4>$30.00</h4>
+                <button class="add-to-cart" data-id="3" data-name="lv-shirt" data-price="30.00" data-image="./images/product-1.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/headphone4.jpg" alt="Product 4">
+                <h3>lvs-shoe</h3>
+                <p>Designed for ultimate comfort and style.</p>
+                <h4>$35.00</h4>
+                <button class="add-to-cart" data-id="4" data-name="lvs-shoe" data-price="35.00" data-image="lvs-shoe.jpg">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+ <!-- ======== BACK PACKS SECTION ======== -->
+ <section class="product-section">
+    <div class="containers">
+        <h2 id="Backpacks">Back Packs</h2>
+        <div class="productss">
+            <div class="product">
+                <img src="../images/backpack1.jpg" alt="Product 1">
+                <h3>Egale shirt</h3>
+                <p>High-quality material with great durability.</p>
+                <h4>$20.00</h4>
+                <button class="add-to-cart" data-id="1" data-name="Egale shirt" data-price="20.00" data-image="./images/product-1.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/backpack2.jpg" alt="Product 2">
+                <h3>lv-shoe</h3>
+                <p>Stylish and comfortable shoes.</p>
+                <h4>$25.00</h4>
+                <button class="add-to-cart" data-id="2" data-name="lv-shoe" data-price="25.00" data-image="lv-shoe.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/backpack3.jpg" alt="Product 3">
+                <h3>Lv-shirt</h3>
+                <p>Trendy shirts for any occasion.</p>
+                <h4>$30.00</h4>
+                <button class="add-to-cart" data-id="3" data-name="lv-shirt" data-price="30.00" data-image="./images/product-1.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/backpack4.jpg" alt="Product 4">
+                <h3>lvs-shoe</h3>
+                <p>Designed for ultimate comfort and style.</p>
+                <h4>$35.00</h4>
+                <button class="add-to-cart" data-id="4" data-name="lvs-shoe" data-price="35.00" data-image="lvs-shoe.jpg">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+ <!-- ======== SMART PHONES SECTION ======== -->
+ <section class="product-section">
+    <div class="containers">
+        <h2 id="Phones">SMART PHONES</h2>
+        <div class="productss">
+            <div class="product">
+                <img src="../images/phone1.jpg" alt="Product 1">
+                <h3>Egale shirt</h3>
+                <p>High-quality material with great durability.</p>
+                <h4>$20.00</h4>
+                <button class="add-to-cart" data-id="1" data-name="Egale shirt" data-price="20.00" data-image="./images/product-1.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/phone2.jpg" alt="Product 2">
+                <h3>lv-shoe</h3>
+                <p>Stylish and comfortable shoes.</p>
+                <h4>$25.00</h4>
+                <button class="add-to-cart" data-id="2" data-name="lv-shoe" data-price="25.00" data-image="lv-shoe.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/phone3.jpg" alt="Product 3">
+                <h3>Lv-shirt</h3>
+                <p>Trendy shirts for any occasion.</p>
+                <h4>$30.00</h4>
+                <button class="add-to-cart" data-id="3" data-name="lv-shirt" data-price="30.00" data-image="./images/product-1.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/phone4.jpg" alt="Product 4">
+                <h3>lvs-shoe</h3>
+                <p>Designed for ultimate comfort and style.</p>
+                <h4>$35.00</h4>
+                <button class="add-to-cart" data-id="4" data-name="lvs-shoe" data-price="35.00" data-image="lvs-shoe.jpg">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+ <!-- ======== SUN GLASSES SECTION ======== -->
+ <section class="product-section">
+    <div class="containers">
+        <h2 id="GLASSES">SUN GLASSES</h2>
+        <div class="productss">
+            <div class="product">
+                <img src="../images/glasses1.jpg" alt="Product 1">
+                <h3>Egale shirt</h3>
+                <p>High-quality material with great durability.</p>
+                <h4>$20.00</h4>
+                <button class="add-to-cart" data-id="1" data-name="Egale shirt" data-price="20.00" data-image="./images/product-1.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/glasses2.jpg" alt="Product 2">
+                <h3>lv-shoe</h3>
+                <p>Stylish and comfortable shoes.</p>
+                <h4>$25.00</h4>
+                <button class="add-to-cart" data-id="2" data-name="lv-shoe" data-price="25.00" data-image="lv-shoe.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/glasses3.jpg" alt="Product 3">
+                <h3>Lv-shirt</h3>
+                <p>Trendy shirts for any occasion.</p>
+                <h4>$30.00</h4>
+                <button class="add-to-cart" data-id="3" data-name="lv-shirt" data-price="30.00" data-image="./images/product-1.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/glasses4.jpg" alt="Product 4">
+                <h3>lvs-shoe</h3>
+                <p>Designed for ultimate comfort and style.</p>
+                <h4>$35.00</h4>
+                <button class="add-to-cart" data-id="4" data-name="lvs-shoe" data-price="35.00" data-image="lvs-shoe.jpg">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+ <!-- ======== PERFUMES SECTION ======== -->
+ <section class="product-section">
+    <div class="containers">
+        <h2 id="perfumes">PERFUMES</h2>
+        <div class="productss">
+            <div class="product">
+                <img src="../images/perfumes1.jpg" alt="Product 1">
+                <h3>Egale shirt</h3>
+                <p>High-quality material with great durability.</p>
+                <h4>$20.00</h4>
+                <button class="add-to-cart" data-id="1" data-name="Egale shirt" data-price="20.00" data-image="./images/product-1.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/perfumes2.jpg" alt="Product 2">
+                <h3>lv-shoe</h3>
+                <p>Stylish and comfortable shoes.</p>
+                <h4>$25.00</h4>
+                <button class="add-to-cart" data-id="2" data-name="lv-shoe" data-price="25.00" data-image="lv-shoe.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/perfumes3.jpg" alt="Product 3">
+                <h3>Lv-shirt</h3>
+                <p>Trendy shirts for any occasion.</p>
+                <h4>$30.00</h4>
+                <button class="add-to-cart" data-id="3" data-name="lv-shirt" data-price="30.00" data-image="./images/product-1.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/perfumes4.webp" alt="Product 4">
+                <h3>lvs-shoe</h3>
+                <p>Designed for ultimate comfort and style.</p>
+                <h4>$35.00</h4>
+                <button class="add-to-cart" data-id="4" data-name="lvs-shoe" data-price="35.00" data-image="lvs-shoe.jpg">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+ <!-- ======== LAPTOPS SECTION ======== -->
+ <section class="product-section">
+    <div class="containers">
+        <h2 id="laptop">LAPTOPS</h2>
+        <div class="productss">
+            <div class="product">
+                <img src="../images/laptop1.jpg" alt="Product 1">
+                <h3>Egale shirt</h3>
+                <p>High-quality material with great durability.</p>
+                <h4>$20.00</h4>
+                <button class="add-to-cart" data-id="1" data-name="Egale shirt" data-price="20.00" data-image="./images/product-1.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/laptop4.jpeg" alt="Product 2">
+                <h3>lv-shoe</h3>
+                <p>Stylish and comfortable shoes.</p>
+                <h4>$25.00</h4>
+                <button class="add-to-cart" data-id="2" data-name="lv-shoe" data-price="25.00" data-image="lv-shoe.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/laptop3.jpeg" alt="Product 3">
+                <h3>Lv-shirt</h3>
+                <p>Trendy shirts for any occasion.</p>
+                <h4>$30.00</h4>
+                <button class="add-to-cart" data-id="3" data-name="lv-shirt" data-price="30.00" data-image="./images/product-1.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/laptop5.jpg" alt="Product 4">
+                <h3>lvs-shoe</h3>
+                <p>Designed for ultimate comfort and style.</p>
+                <h4>$35.00</h4>
+                <button class="add-to-cart" data-id="4" data-name="lvs-shoe" data-price="35.00" data-image="lvs-shoe.jpg">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+ <!-- ======== CAMERAS SECTION ======== -->
+ <section class="product-section">
+    <div class="containers">
+        <h2 id="camera">CAMERAS</h2>
+        <div class="productss">
+            <div class="product">
+                <img src="../images/camera2.jpg" alt="Product 1">
+                <h3>Egale shirt</h3>
+                <p>High-quality material with great durability.</p>
+                <h4>$20.00</h4>
+                <button class="add-to-cart" data-id="1" data-name="Egale shirt" data-price="20.00" data-image="./images/product-1.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/camera3.jpeg" alt="Product 2">
+                <h3>lv-shoe</h3>
+                <p>Stylish and comfortable shoes.</p>
+                <h4>$25.00</h4>
+                <button class="add-to-cart" data-id="2" data-name="lv-shoe" data-price="25.00" data-image="lv-shoe.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/camera4.jpeg" alt="Product 3">
+                <h3>Lv-shirt</h3>
+                <p>Trendy shirts for any occasion.</p>
+                <h4>$30.00</h4>
+                <button class="add-to-cart" data-id="3" data-name="lv-shirt" data-price="30.00" data-image="./images/product-1.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/camera5.jpeg" alt="Product 4">
+                <h3>lvs-shoe</h3>
+                <p>Designed for ultimate comfort and style.</p>
+                <h4>$35.00</h4>
+                <button class="add-to-cart" data-id="4" data-name="lvs-shoe" data-price="35.00" data-image="lvs-shoe.jpg">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+ <!-- ======== GAMING CONSOLES SECTION ======== -->
+ <section class="product-section">
+    <div class="containers">
+        <h2 id="console">GAMING CONSOLES</h2>
+        <div class="productss">
+            <div class="product">
+                <img src="../images/console1.jpg" alt="Product 1">
+                <h3>Egale shirt</h3>
+                <p>High-quality material with great durability.</p>
+                <h4>$20.00</h4>
+                <button class="add-to-cart" data-id="1" data-name="Egale shirt" data-price="20.00" data-image="./images/product-1.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/console2.jpeg" alt="Product 2">
+                <h3>lv-shoe</h3>
+                <p>Stylish and comfortable shoes.</p>
+                <h4>$25.00</h4>
+                <button class="add-to-cart" data-id="2" data-name="lv-shoe" data-price="25.00" data-image="lv-shoe.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/console3.jpeg" alt="Product 3">
+                <h3>Lv-shirt</h3>
+                <p>Trendy shirts for any occasion.</p>
+                <h4>$30.00</h4>
+                <button class="add-to-cart" data-id="3" data-name="lv-shirt" data-price="30.00" data-image="./images/product-1.jpg">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="../images/console4.jpeg" alt="Product 4">
+                <h3>lvs-shoe</h3>
+                <p>Designed for ultimate comfort and style.</p>
+                <h4>$35.00</h4>
+                <button class="add-to-cart" data-id="4" data-name="lvs-shoe" data-price="35.00" data-image="lvs-shoe.jpg">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- ======== FOOTER SECTION ======== -->
+
+    <footer>
+        <!-- First Row -->
+        <div class="footer-row first-row">
+            <div class="column">
+                <h4>About Us</h4>
+                <p>TurboFit is the ultimate store for fitness & activewear.</p>
+                <h4><a href="tel:+2347083034571">0708 303 4571</a></h4>
+                <div class="social-icons">
+                    <a class="facebook" href="#"><i class='bx bxl-facebook-circle'></i>
+                    </a>
+                    <a class="twitter" href=""><i class='bx bxl-twitter'></i></a>
+                    <a class="instagram" href=""><i class='bx bxl-instagram' ></i></a>
+                    <a class="youtube" href="#"><i class='bx bxl-youtube' ></i></a>
+                    <a class="tiktok" href=""><i class='bx bxl-tiktok' ></i></a>
+                </div>
+            </div>
+            <div class="column">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Order Tracking</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="column">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="#">Men</a></li>
+                    <li><a href="#">Women</a></li>
+                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#">Shoes</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Sale</a></li>
+                </ul>
+            </div>
+            <div class="column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Affiliates</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Gift Cards</a></li>
+                </ul>
+            </div>
+            <div class="column">
+                <h4>Help</h4>
+                <ul>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Find a Store</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">Payment Options</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Live Chat</a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <!-- Second Row -->
+        <div class="footer-row second-row">
+            <div class="column">
+                <select class="currency-select">
+                    <option>USD</option>
+                    <option>EUR</option>
+                    <option>GBP</option>
+                    <option>NGN</option>
+                    <option>CAD</option>
+                </select>
+                <select class="country-select">
+                    <option>United States</option>
+                    <option>United Kingdom</option>
+                    <option>Nigeria</option>
+                    <option>Canada</option>
+                    <option>Germany</option>
+                </select>
+            </div>
+            <div class="column">
+                <h4>Subscribe & Get 10% Off Your First Order</h4>
+                <div id="newsletter-form" class="subscribe-box">
+                    <input id="email-input" type="email" placeholder="Enter your email address">
+                    <button>Subscribe</button>
+                </div>
+                <p class="disclaimer">By subscribing, you accept our <a href="#">Policy</a>.</p>
+            </div>
+        </div>
+    
+        <!-- Third Row -->
+        <div class="footer-row third-row">
+            <div class="column">© 2024 TurboFit. All Rights Reserved.</div>
+            <div class="column payment-methods">
+                <img src="../images/visa- logo.png" alt="Visa">
+                <img src="../images/master-card-logo.png" alt="MasterCard">
+                <img src="../images/paypal-logo.png" alt="PayPal">
+                <img src="../images/apple-pay-logo.png" alt="Apple Pay">
+            </div>
+            <div class="column"><a href="#">Mobile Site</a> <a href="#top"><i class='bx bxs-to-top'></i></a></div>
+        </div>
+    </footer>
+
+
+
+<script type="module" src="./product.js"></script>
+</body>
+</html>
