@@ -65,7 +65,14 @@ async function addToCart(product) {
     const user = auth.currentUser;
 
     if (!user) {
-        alert("You need to log in to add items to your cart.");
+        Swal.fire({
+            title: 'Error!',
+            text: 'You have to log in to add to your cart',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          })
+
+        
         return;
     }
 

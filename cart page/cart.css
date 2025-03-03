@@ -205,7 +205,7 @@ body {
 /* Cart Items List (Left Side) */
 .cart-items-card {
   max-height: 450px;
-  overflow-y: auto; 
+  overflow-y: auto !important; 
   display: grid;
   gap: 10px;
 }
