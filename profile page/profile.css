@@ -11,109 +11,109 @@ body {
 /* ========= FIRST NAVBAR ======== */
 
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    background: #333;
-    color: white;
-    position: relative;
-  }
-  
-  .logo {
-    font-size: 1.5em;
-    font-weight: bold;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: #333;
+  color: white;
+  position: relative;
+}
+
+.logo {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li {
+  display: inline;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1em;
+}
+
+.nav-links a:hover {
+  color: #e95e02;
+}
+
+/* Navigation Buttons */
+.nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.login-btn, .logout-btn, .cart-btn {
+  background: white;
+  text-decoration: none;
+  color: #d45500;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 1em;
+  border-radius: 5px;
+  position: relative;
+}
+
+
+
+/* Cart Counter */
+.cart-btn {
+  position: relative;
+}
+
+.cart-btn span {
+  background: red;
+  color: white;
+  font-size: 14px;
+  border-radius: 50%;
+  padding: 4px 8px;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+}
+
+/* Menu Toggle */
+.menu-toggle {
+  display: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  padding: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
   .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      background: #444;
+      text-align: center;
+      padding: 10px 0;
+      transition: all 0.3s ease-in-out;
   }
-  
-  .nav-links li {
-    display: inline;
+
+  .nav-links.show {
+      display: flex;
   }
-  
-  .nav-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 1em;
-  }
-  
-  .nav-links a:hover {
-    color: #e95e02;
-  }
-  
-  /* Navigation Buttons */
-  .nav-buttons {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .login-btn, .logout-btn, .cart-btn {
-    background: white;
-    text-decoration: none;
-    color: #d45500;
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    font-size: 1em;
-    border-radius: 5px;
-    position: relative;
-  }
-  
-  
-  
-  /* Cart Counter */
-  .cart-btn {
-    position: relative;
-  }
-  
-  .cart-btn span {
-    background: red;
-    color: white;
-    font-size: 14px;
-    border-radius: 50%;
-    padding: 4px 8px;
-    position: absolute;
-    top: -8px;
-    right: -8px;
-  }
-  
-  /* Menu Toggle */
+
   .menu-toggle {
-    display: none;
-    font-size: 1.5em;
-    cursor: pointer;
-    padding: 10px;
+      display: block;
   }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100%;
-        background: #444;
-        text-align: center;
-        padding: 10px 0;
-        transition: all 0.3s ease-in-out;
-    }
-  
-    .nav-links.active {
-        display: flex;
-    }
-  
-    .menu-toggle {
-        display: block;
-    }
-  }
+}
   
   
   /* ========= SECOND NAVBAR ======== */

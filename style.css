@@ -223,7 +223,7 @@ body {
 
 .category-list li {
     padding: 8px 0;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 2px solid #ddd;
 }
 
 .category-list li:last-child {

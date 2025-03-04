@@ -1,3 +1,12 @@
+// ======= TOGGLE NAVIGATION MENU =======
+const menuIcon = document.getElementById('menu-icon');
+const navLinks = document.getElementById('nav-links');
+
+menuIcon.addEventListener('click', () => {
+  navLinks.classList.toggle('show');
+});
+
+
 // Firebase Modular Imports
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
 import { 
