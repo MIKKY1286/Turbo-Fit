@@ -1,3 +1,13 @@
+// ======= TOGGLE NAVIGATION MENU =======
+const menuIcon = document.getElementById('menu-icon');
+const navLinks = document.getElementById('nav-links');
+
+menuIcon.addEventListener('click', () => {
+  navLinks.classList.toggle('show');
+});
+
+
+
 import { 
     getFirestore, collection, getDocs, doc, updateDoc, deleteDoc 
 } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
