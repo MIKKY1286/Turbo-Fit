@@ -3,99 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout Page</title>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-        body { background: #f9f9f9; padding: 40px; }
-        .section { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; max-width: 900px; margin: auto; }
-        .card { flex: 1; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; font-weight: bold; margin-bottom: 5px; }
-        input, select, textarea { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; }
-        .form-row { display: flex; gap: 10px; }
-        .form-row input { flex: 1; }
-        .checkbox-group { display: flex; align-items: center; gap: 5px; }
-        .checkout { display: flex; flex-direction: column; gap: 15px; }
-        .checkout .card { padding: 15px; }
-        .product-summary, .payment-method { border-top: 1px solid #ddd; padding-top: 10px; }
-        .payment-method label { display: flex; align-items: center; gap: 10px; }
-        .btn { width: 100%; padding: 10px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
-        @media (max-width: 768px) { .section { flex-direction: column; } .form-row { flex-direction: column; } }
-    </style>
+    <title>Cart - Trendora</title>
+    <link rel="stylesheet" href="./checkout.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
-<body>
+<body>   
 
-    <section class="section">
-        <!-- Left Card (Form) -->
-        <div class="card">
-            <form id="checkoutForm">
-                <div class="form-group">
-                    <label>First Name & Last Name</label>
-                    <div class="form-row">
-                        <input type="text" id="firstName" placeholder="First Name">
-                        <input type="text" id="lastName" placeholder="Last Name">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Company/Dealer Name</label>
-                    <input type="text" id="company" placeholder="Company/Dealer Name">
-                </div>
-                <div class="form-group">
-                    <label>Country/Region</label>
-                    <select id="country">
-                        <option>Select Country</option>
-                        <option>United States</option>
-                        <option>Canada</option>
-                        <option>United Kingdom</option>
-                        <option>Nigeria</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Street Address</label>
-                    <input type="text" id="streetAddress" placeholder="Street Address">
-                    <input type="text" id="apartment" placeholder="Apartment, suite, unit etc. (optional)">
-                </div>
-                <div class="form-group">
-                    <label>Phone Number</label>
-                    <input type="tel" id="phone" placeholder="Phone Number">
-                </div>
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" id="email" placeholder="Email Address">
-                </div>
-                <div class="form-group">
-                    <label>Order Notes</label>
-                    <textarea id="orderNotes" rows="4" placeholder="Write any additional notes about your order..."></textarea>
-                </div>
-            </form>
+
+     <!-- ======== NAVIGATION ======== -->
+<nav class="navbar top">
+    <div class="logo">
+        <a href="index.html">
+            <img style="height: 50px;" src="../images/turbofit_logo-removebg-preview.png" alt="TurboFit">
+        </a>
+    </div>
+    <ul id="nav-links" class="nav-links">
+        <li><a href="./index.html" class="active">Home</a></li>
+        <li><a href="./product page/product.html">Shop</a></li>
+        <li><a href="./profile page/profile.html ">Profile</a></li>
+        <li><a href="./signup page/signup.html">Sign Up</a></li>
+    </ul>
+    <div class="nav-buttons">
+        <a href="./signin page/signin.html" id="loginSignup" class="login-btn">Login</a>
+
+        <a href="" id="logoutBtn" class="logout-btn" style="display: none;">Logout</a>
+        <a href="./cart page/cart.html" class="cart-btn">
+            <i class='bx bx-cart-alt'></i><span id="cart-count">0</span>
+        </a>
+    </div>
+    <div class="menu-toggle" id="menu-icon">
+        <i class='bx bx-menu-alt-right'></i>
+      </div>
+</nav>
+
+
+    <!-- ======== SEARCH BAR ======== -->
+    <div class="navbar-2">
+        <div class="search-container">
+            <select class="category-dropdown">
+                <option value="all">All Categories</a></option>
+                <option value="clothing">Clothing</option>
+                <option value="electronics">Electronics</option>
+                <option value="home-garden">Home & Garden</option>
+                <option value="beauty">Beauty</option>
+                <option value="sports">Sports</option>
+            </select>
+            <input type="text" class="search-input" placeholder="Search for products...">
+            <button class="search-btn">🔍</button>
+        </div>
+    </div>
+
+
+    <!-- ======== CHECKOUT  SECTION ======== -->
+
+    <div class="container">
+        <!-- Left Side: Cart Items -->
+        <div class="cart-section">
+            <h2>Your Order</h2>
+            <div id="cart-items"></div>
         </div>
 
-        <!-- Right Card (Checkout) -->
-        <div class="card checkout">
-            <div class="card">
-                <h2>Order Summary</h2>
-                <div class="product-summary">
-                    <p><strong>Product 1</strong>: $50</p>
-                    <p><strong>Product 2</strong>: $30</p>
-                    <p><strong>Total:</strong> $80</p>
-                </div>
-            </div>
-            <div class="card">
-                <h2>Payment Method</h2>
-                <div class="payment-method">
-                    <label><input type="radio" name="payment" value="card"> Credit/Debit Card</label>
-                    <label><input type="radio" name="payment" value="paypal"> PayPal</label>
-                    <label><input type="radio" name="payment" value="bank"> Bank Transfer</label>
-                </div>
-            </div>
-            <button class="btn" id="submitOrder">Place Order</button>
+        <!-- Right Side: Checkout Summary -->
+        <div class="cart-summary-card">
+            <h2>Checkout</h2>
+            <p>Subtotal: $<span id="subtotal-price">0.00</span></p>
+            <p>Shipping Fee: $<span id="shipping-fee">5.00</span></p>
+            <hr>
+            <p><strong>Order Total: $<span id="order-total">0.00</span></strong></p>
+
+            <label for="payment-method">Payment Method:</label>
+            <select id="payment-method">
+                <option value="card">Credit/Debit Card</option>
+                <option value="paypal">PayPal</option>
+                <option value="bank">Bank Transfer</option>
+            </select>
+
+            <button id="checkout-btn" style="display: none;">Proceed to Payment</button>
         </div>
-    </section>
+    </div>
+
+    <!-- Payment Card Modal -->
+    <div id="payment-card" class="hidden">
+        <div class="payment-content">
+            <h3>Payment Details</h3>
+            <p>Method: <span id="selected-method"></span></p>
+            <p>Total: <span id="final-amount"></span></p>
+            <button id="confirm-payment">Confirm Payment</button>
+            <button id="close-payment">Cancel</button>
+        </div>
+    </div>
+
+    <!-- =========== FOOTER SECTION =============== -->
+
+    <footer>
+        <!-- First Row -->
+        <div class="footer-row first-row">
+            <div class="column">
+                <h4>About Us</h4>
+                <p>TurboFit is the ultimate store for fitness & activewear.</p>
+                <h4><a href="tel:+2347083034571">0708 303 4571</a></h4>
+                <div class="social-icons">
+                    <a class="facebook" href="#"><i class='bx bxl-facebook-circle'></i>
+                    </a>
+                    <a class="twitter" href=""><i class='bx bxl-twitter'></i></a>
+                    <a class="instagram" href=""><i class='bx bxl-instagram' ></i></a>
+                    <a class="youtube" href="#"><i class='bx bxl-youtube' ></i></a>
+                    <a class="tiktok" href=""><i class='bx bxl-tiktok' ></i></a>
+                </div>
+            </div>
+            <div class="column">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Order Tracking</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="column">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="#">Men</a></li>
+                    <li><a href="#">Women</a></li>
+                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#">Shoes</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Sale</a></li>
+                </ul>
+            </div>
+            <div class="column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Affiliates</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Gift Cards</a></li>
+                </ul>
+            </div>
+            <div class="column">
+                <h4>Help</h4>
+                <ul>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Find a Store</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">Payment Options</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Live Chat</a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <!-- Second Row -->
+        <div class="footer-row second-row">
+            <div class="column">
+                <select class="currency-select">
+                    <option>USD</option>
+                    <option>EUR</option>
+                    <option>GBP</option>
+                    <option>NGN</option>
+                    <option>CAD</option>
+                </select>
+                <select class="country-select">
+                    <option>United States</option>
+                    <option>United Kingdom</option>
+                    <option>Nigeria</option>
+                    <option>Canada</option>
+                    <option>Germany</option>
+                </select>
+            </div>
+            <div class="column">
+                <h4>Subscribe & Get 10% Off Your First Order</h4>
+                <div id="newsletter-form" class="subscribe-box">
+                    <input id="email-input" type="email" placeholder="Enter your email address">
+                    <button>Subscribe</button>
+                </div>
+                <p class="disclaimer">By subscribing, you accept our <a href="#">Policy</a>.</p>
+            </div>
+        </div>
+    
+        <!-- Third Row -->
+        <div class="footer-row third-row">
+            <div class="column">© 2024 TurboFit. All Rights Reserved.</div>
+            <div class="column payment-methods">
+                <img src="./images/visa- logo.png" alt="Visa">
+                <img src="./images/master-card-logo.png" alt="MasterCard">
+                <img src="./images/paypal-logo.png" alt="PayPal">
+                <img src="./images/apple-pay-logo.png" alt="Apple Pay">
+            </div>
+            <div class="column"><a href="#">Mobile Site</a> <a href="#top"><i class='bx bxs-to-top'></i></a></div>
+        </div>
+    </footer>
 
     <script type="module" src="./checkout.js"></script>
-
-
 </body>
 </html>

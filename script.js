@@ -36,7 +36,7 @@ const db = getFirestore(app);
 // Select Elements
 const loginSignup = document.getElementById("loginSignup");
 const logoutBtn = document.getElementById("logoutBtn");
-const cartCount = document.getElementById("cart-count"); // Cart count badge
+const cartCount = document.getElementById("cart-count");
 
 // Handle Authentication State
 document.addEventListener("DOMContentLoaded", () => {
@@ -173,4 +173,4 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-});
+}); 

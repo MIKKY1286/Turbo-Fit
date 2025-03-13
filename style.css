@@ -35,8 +35,14 @@ body {
     display: inline;
 }
 
-.nav-links a {
+/* .nav-links .a {
     color: white;
+    text-decoration: none;
+    font-size: 1em;
+} */
+
+.nav-links a {
+    color: #fff;
     text-decoration: none;
     font-size: 1em;
 }
@@ -461,7 +467,7 @@ body {
 /* ======== NAV & TAB SECTION ========== */
 
 /* General Styles */
-.nav-tab-section {
+/* .nav-tab-section {
     padding: 30px 20px;
     text-align: center;
 }
@@ -470,10 +476,10 @@ body {
     font-size: 1.8em;
     font-weight: bold;
     margin-bottom: 20px;
-}
+} */
 
 /* Navigation Tabs */
-.nav-tabs {
+/* .nav-tabs {
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -493,10 +499,10 @@ body {
 .tab-btn.active {
     background: #ff6f00;
     color: white;
-}
+} */
 
 /* Tab Content */
-.tab-content {
+/* .tab-content {
     max-width: 600px;
     margin: 0 auto;
 }
@@ -507,10 +513,10 @@ body {
 
 .tab-panel.active {
     display: block;
-}
+} */
 
 /* Product Grid */
-.product-grid {
+/* .product-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
@@ -525,14 +531,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-}
+} */
 
 /* Responsive Design */
-@media (max-width: 600px) {
+/* @media (max-width: 600px) {
     .product-grid {
         grid-template-columns: 1fr;
     }
-}
+} */
 
 /* ========= ADS SECTION =========== */
 
