@@ -169,7 +169,7 @@ body {
 }
 
 /* Search Button */
-.search-btn {
+.searchs-btn {
     border: none;
     background: #ff6f00;
     color: white;
@@ -181,7 +181,7 @@ body {
     border-bottom-right-radius: 30px;
 }
 
-.search-btn:hover {
+.searchs-btn:hover {
     background: #e65c00;
 }
 

@@ -95,7 +95,13 @@ if (logoutBtn) {
     logoutBtn.addEventListener("click", async () => {
         try {
             await signOut(auth);
-            alert("You have logged out.");
+            Swal.fire({
+                icon: "success",
+                title: "Logged Out",
+                text: "You have successfully logged out!",
+                timer: 2000,
+                showConfirmButton: false
+            });
             window.location.reload();
         } catch (error) {
             console.error("Logout error:", error.message);
@@ -128,7 +134,13 @@ window.uploadProfilePicture = async () => {
 
         // Update the profile picture on the UI
         document.getElementById("profile-pic").src = photoURL;
-        alert("Profile picture updated!");
+        Swal.fire({
+            icon: "success",
+            title: "Profile Updated Sucessfully!",
+            text: "Your profile has been updated successfully 🎉",
+            timer: 3000,
+            showConfirmButton: false
+        });
     } catch (error) {
         console.error("Error uploading profile picture:", error);
         alert("Failed to upload profile picture. Try again.");
@@ -193,14 +205,26 @@ window.saveAccountInfo = async () => {
         phone: document.getElementById("phone").value
     }, { merge: true });
 
-    alert("Account info updated!");
+    Swal.fire({
+        icon: "success",
+        title: "Account info Updated!",
+        text: "Your account info has been updated successfully 🎉",
+        timer: 3000,
+        showConfirmButton: false
+    });
 };
 
 // Function to Save Address
 window.saveAddress = async () => {
     const user = auth.currentUser;
-    if (!user) return alert("You need to log in first.");
-
+    if (!user) return Swal.fire({
+        icon: "warning",
+        title: "Login Required",
+        text: "You need to log in first to perform this action!",
+        showCancelButton: true,
+        confirmButtonText: "Log In",
+        cancelButtonText: "Cancel",
+    })
     const addressData = {
         addressLine1: document.getElementById("address-line1").value,
         addressLine2: document.getElementById("address-line2").value,
@@ -210,7 +234,13 @@ window.saveAddress = async () => {
     };
 
     await setDoc(doc(db, "users", user.uid), { address: addressData }, { merge: true });
-    alert("Address updated successfully!");
+    Swal.fire({
+        icon: "success",
+        title: "Address Updated Successfully!",
+        text: "Your address has been updated successfully 🎉",
+        timer: 3000,
+        showConfirmButton: false
+    });
 };
 
 // Change Password
@@ -219,6 +249,12 @@ window.changePassword = async () => {
     const user = auth.currentUser;
     if (user) {
         await updatePassword(user, newPassword);
-        alert("Password updated!");
+        Swal.fire({
+            icon: "success",
+            title: "Password Updated Successfully!",
+            text: "Your password has been updated successfully 🎉",
+            timer: 3000,
+            showConfirmButton: false
+        });
     }
 };

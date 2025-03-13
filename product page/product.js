@@ -60,7 +60,13 @@ if (logoutBtn) {
         try {
             await signOut(auth);
             console.log("User logged out");
-            alert("You have logged out.");
+            Swal.fire({
+                icon: "success",
+                title: "Logged Out",
+                text: "You have successfully logged out!",
+                timer: 2000,
+                showConfirmButton: false
+            });
             window.location.reload();
         } catch (error) {
             console.error("Logout error:", error.message);

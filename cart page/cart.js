@@ -40,16 +40,29 @@ const cartCount = document.getElementById("cart-count"); // Cart count badge
 // Handle Authentication State
 document.addEventListener("DOMContentLoaded", () => {
     onAuthStateChanged(auth, async (user) => {
+        const cartItems = document.getElementById("cart-items");
+        const checkoutBtn = document.getElementById("checkout-btn");
+        const totalPrice = document.getElementById("total-price");
+
         if (user) {
             console.log("User is logged in:", user);
             if (loginSignup) loginSignup.style.display = "none";
             if (logoutBtn) logoutBtn.style.display = "block";
+
             await updateCartCount(); // Update cart count when user logs in
+            await fetchCart(); // Fetch cart only when user is logged in
         } else {
             console.log("User is logged out");
             if (loginSignup) loginSignup.style.display = "block";
             if (logoutBtn) logoutBtn.style.display = "none";
-            if (cartCount) cartCount.textContent = "0"; // Reset cart count on logout
+
+            // Reset cart count
+            if (cartCount) cartCount.textContent = "0";
+
+            // Clear cart UI completely
+            if (cartItems) cartItems.innerHTML = `<p class="empty-cart">Your cart is empty 🛒</p>`;
+            if (checkoutBtn) checkoutBtn.style.display = "none";
+            if (totalPrice) totalPrice.innerText = "0.00";
         }
     });
 });
@@ -60,13 +73,20 @@ if (logoutBtn) {
         try {
             await signOut(auth);
             console.log("User logged out");
-            alert("You have logged out.");
+            Swal.fire({
+                icon: "success",
+                title: "Logged Out",
+                text: "You have successfully logged out!",
+                timer: 2000,
+                showConfirmButton: false
+            });
             window.location.reload();
         } catch (error) {
             console.error("Logout error:", error.message);
         }
     });
 }
+
 
 // Function to Update Cart Count
 async function updateCartCount() {
@@ -176,3 +196,13 @@ window.removeFromCart = removeFromCart;
 
 // Load Cart Data
 document.addEventListener("DOMContentLoaded", fetchCart);
+
+
+const checkoutBtn = document.getElementById("checkout-btn");
+if (checkoutBtn) {
+    checkoutBtn.addEventListener("click", function () {
+        window.location.href = "../checkout/checkout.html";
+    });
+}
+
+
