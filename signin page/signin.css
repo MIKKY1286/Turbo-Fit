@@ -1,0 +1,58 @@
+body {
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    max-width: 400px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.btn-primary {
+    width: 100%;
+    background: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+}
+
+.btn-google {
+    width: 100%;
+    background: #ea4335;
+    color: white;
+    border: none;
+    margin-top: 10px;
+}
+
+.btn-google:hover {
+    background: #c1351d;
+}
+
+#recaptcha-container {
+    margin: 10px 0;
+    text-align: center;
+}
+
+.text-center {
+    margin-top: 15px;
+    font-size: 14px;
+}

@@ -3,7 +3,7 @@ const menuIcon = document.getElementById('menu-icon');
 const navLinks = document.getElementById('nav-links');
 
 menuIcon.addEventListener('click', () => {
-  navLinks.classList.toggle('show');
+    navLinks.classList.toggle('show');
 });
 
 import { 
@@ -182,20 +182,38 @@ document.getElementById("close-payment").addEventListener("click", function () {
     document.getElementById("payment-card").classList.remove("show");
 });
 
-// Confirm Payment
-document.getElementById("confirm-payment").addEventListener("click", function () {
-    Swal.fire({
-        icon: "success",
-        title: "Payment Successful!",
-        text: "Your order has been placed successfully 🎉",
-        timer: 3000,
-        showConfirmButton: false
-    });
+// Confirm Payment and Clear Cart
+document.getElementById("confirm-payment").addEventListener("click", async function () {
+    try {
+        // Get reference to the cart collection
+        const cartRef = collection(db, "cart");
+        const querySnapshot = await getDocs(cartRef);
 
-    setTimeout(() => {
-        document.getElementById("payment-card").classList.remove("show");
-        // Optionally, clear the cart or redirect to another page
-    }, 3000);
+        // Delete each cart item
+        querySnapshot.forEach(async (docSnap) => {
+            await deleteDoc(doc(db, "cart", docSnap.id));
+        });
+
+        Swal.fire({
+            icon: "success",
+            title: "Payment Successful!",
+            text: "Your order has been placed successfully 🎉",
+            timer: 3000,
+            showConfirmButton: false
+        });
+
+        setTimeout(() => {
+            document.getElementById("payment-card").classList.remove("show");
+            window.location.href = "../index.html"; 
+        }, 3000);
+    } catch (error) {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Failed to clear cart after payment. Please contact support.",
+        });
+        console.error("Error clearing cart:", error);
+    }
 });
 
 // Load Cart on Page Load
