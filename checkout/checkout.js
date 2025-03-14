@@ -175,6 +175,16 @@ checkoutBtn.addEventListener("click", function () {
     document.getElementById("final-amount").innerText = `$${orderTotal}`;
     document.getElementById("payment-card").classList.add("show");
 });
+// Select the cancel button and payment card
+const closePaymentBtn = document.getElementById("close-payment");
+const paymentCard = document.getElementById("payment-card");
+
+if (closePaymentBtn && paymentCard) {
+    closePaymentBtn.addEventListener("click", function () {
+        paymentCard.classList.remove("show"); // Hide the payment card
+    });
+}
+
 
 // ✅ Confirm Payment and Clear Cart
 document.getElementById("confirm-payment").addEventListener("click", async function () {
