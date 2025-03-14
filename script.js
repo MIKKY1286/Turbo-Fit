@@ -10,11 +10,11 @@ menuIcon.addEventListener('click', () => {
 // Import Firebase Modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
 import { 
-    getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, 
+    getAuth,
     onAuthStateChanged, signOut 
 } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 import { 
-    getFirestore, collection, addDoc, updateDoc, getDocs, query, where, doc 
+    getFirestore, collection, addDoc, updateDoc, serverTimestamp, getDocs, query, where,  
 } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
 // Firebase Configuration
@@ -69,7 +69,7 @@ if (logoutBtn) {
     });
 }
 
-// ======= ADD PRODUCT TO FIRESTORE & UPDATE CART COUNT =======
+// ✅ ADD PRODUCT TO FIRESTORE & UPDATE CART COUNT
 async function addToCart(product) {
     const user = auth.currentUser;
 
@@ -79,15 +79,13 @@ async function addToCart(product) {
             text: 'You have to log in to add to your cart',
             icon: 'error',
             confirmButtonText: 'Ok'
-          })
-
-        
+        });
         return;
     }
 
     try {
-        const cartRef = collection(db, "cart");
-        const q = query(cartRef, where("id", "==", product.id));
+        const userCartRef = collection(db, "users", user.uid, "cart");
+        const q = query(userCartRef, where("id", "==", product.id));
         const querySnapshot = await getDocs(q);
 
         if (!querySnapshot.empty) {
@@ -98,7 +96,7 @@ async function addToCart(product) {
             });
             console.log("Cart updated successfully!");
         } else {
-            await addDoc(cartRef, product);
+            await addDoc(userCartRef, product);
             console.log("Product added to cart!");
         }
 
@@ -109,27 +107,28 @@ async function addToCart(product) {
     }
 }
 
-// ======= UPDATE CART COUNT =======
+// ✅ UPDATE CART COUNT
 async function updateCartCount() {
     const user = auth.currentUser;
     if (!user) return;
 
     try {
-        const cartRef = collection(db, "cart");
-        const querySnapshot = await getDocs(cartRef);
+        const userCartRef = collection(db, "users", user.uid, "cart");
+        const querySnapshot = await getDocs(userCartRef);
         let totalQuantity = 0;
 
         querySnapshot.forEach(doc => {
             totalQuantity += doc.data().quantity;
         });
 
+        const cartCount = document.getElementById("cart-count"); // Ensure your cart count element has this ID
         if (cartCount) cartCount.textContent = totalQuantity;
     } catch (error) {
         console.error("Error updating cart count:", error);
     }
 }
 
-// Event Listener for "Add to Cart" Buttons
+// ✅ Event Listener for "Add to Cart" Buttons
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".add-to-cart").forEach(button => {
         button.addEventListener("click", function () {
@@ -138,9 +137,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 id: this.dataset.id,
                 name: this.dataset.name,
                 image: this.dataset.image,
-                price: this.dataset.price,
+                price: parseFloat(this.dataset.price),
                 quantity: quantity,
-                timestamp: new Date()
+                timestamp: serverTimestamp() // ✅ Fix: Now properly imported
             };
             console.log(product);
             

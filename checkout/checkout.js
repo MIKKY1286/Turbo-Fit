@@ -6,6 +6,7 @@ menuIcon.addEventListener('click', () => {
     navLinks.classList.toggle('show');
 });
 
+// ======= FIREBASE SETUP =======
 import { 
     getFirestore, collection, getDocs, doc, updateDoc, deleteDoc 
 } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
@@ -34,11 +35,17 @@ const auth = getAuth(app);
 const loginSignup = document.getElementById("loginSignup");
 const logoutBtn = document.getElementById("logoutBtn");
 const cartCount = document.getElementById("cart-count"); // Cart count badge
+const cartItems = document.getElementById("cart-items");
+const checkoutBtn = document.getElementById("checkout-btn");
+const totalPrice = document.getElementById("total-price");
 
 // Function to Update Cart Count
 async function updateCartCount() {
     try {
-        const cartRef = collection(db, "cart");
+        const user = auth.currentUser;
+        if (!user || !cartCount) return;
+
+        const cartRef = collection(db, "users", user.uid, "cart");
         const querySnapshot = await getDocs(cartRef);
 
         let count = 0;
@@ -47,9 +54,7 @@ async function updateCartCount() {
             count += product.quantity || 1; // Count total items in cart
         });
 
-        if (cartCount) {
-            cartCount.textContent = count;
-        }
+        cartCount.textContent = count;
     } catch (error) {
         console.error("Error updating cart count:", error);
     }
@@ -58,10 +63,6 @@ async function updateCartCount() {
 // Handle Authentication State
 document.addEventListener("DOMContentLoaded", () => {
     onAuthStateChanged(auth, async (user) => {
-        const cartItems = document.getElementById("cart-items");
-        const checkoutBtn = document.getElementById("checkout-btn");
-        const totalPrice = document.getElementById("total-price");
-
         if (user) {
             console.log("User is logged in:", user);
             if (loginSignup) loginSignup.style.display = "none";
@@ -74,10 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (loginSignup) loginSignup.style.display = "block";
             if (logoutBtn) logoutBtn.style.display = "none";
 
-            // Reset cart count
             if (cartCount) cartCount.textContent = "0";
-
-            // Clear cart UI completely
             if (cartItems) cartItems.innerHTML = `<p class="empty-cart">Your cart is empty 🛒</p>`;
             if (checkoutBtn) checkoutBtn.style.display = "none";
             if (totalPrice) totalPrice.innerText = "0.00";
@@ -109,59 +107,60 @@ if (logoutBtn) {
     });
 }
 
-// Function to Fetch and Display Cart Items
+// ✅ Fetch Cart Data for Logged-in User
 async function fetchCart() {
+    const user = auth.currentUser;
+    if (!user || !cartItems) return;
+
     try {
-        const cartRef = collection(db, "cart");
-        const querySnapshot = await getDocs(cartRef);
+        const userCartRef = collection(db, "users", user.uid, "cart");
+        const querySnapshot = await getDocs(userCartRef);
 
-        const cartContainer = document.getElementById("cart-items");
-        cartContainer.innerHTML = "";
-
-        let subtotal = 0;
-        let shippingFee = 5.00;
+        let total = 0;
+        let cartHTML = "";
 
         if (querySnapshot.empty) {
-            cartContainer.innerHTML = `<p class="empty-cart">Your cart is empty 🛒</p>`;
-            document.getElementById("checkout-btn").style.display = "none";
+            cartItems.innerHTML = `<p class="empty-cart">Your cart is empty 🛒</p>`;
+            if (checkoutBtn) checkoutBtn.style.display = "none";
+            if (totalPrice) totalPrice.innerText = "0.00";
             return;
-        } 
+        } else {
+            checkoutBtn.style.display = "block";
+        }
 
-        document.getElementById("checkout-btn").style.display = "block";
-
-        querySnapshot.forEach(docSnap => {
+        querySnapshot.forEach((docSnap) => {
             let product = docSnap.data();
-            let price = parseFloat(product.price) || 0;
+            let productId = docSnap.id;
+            let price = parseFloat(product.price) || 0;  
             let quantity = product.quantity || 1;
+            let subtotal = price * quantity; 
+            let imageUrl = product.image || "https://via.placeholder.com/150";
 
-            subtotal += price * quantity;
-
-            cartContainer.innerHTML += `
+            cartHTML += `
                 <div class="cart-item">
-                    <img src="${product.image}" alt="${product.name}">
-                    <p>${product.name} (x${quantity})</p>
-                    <p>$${(price * quantity).toFixed(2)}</p>
+                    <img src="${imageUrl}" alt="${product.name || 'No Name'}">
+                    <div class="item-details">
+                        <p class="item-name">${product.name || 'No Name'}</p>
+                        <p class="item-price">$${price.toFixed(2)}</p>
+                        <p class="item-subtotal">Subtotal: $${subtotal.toFixed(2)}</p>
+                    </div>
                 </div>
             `;
+
+            total += subtotal;
         });
 
-        let orderTotal = subtotal + shippingFee;
-        document.getElementById("subtotal-price").innerText = subtotal.toFixed(2);
-        document.getElementById("shipping-fee").innerText = shippingFee.toFixed(2);
-        document.getElementById("order-total").innerText = orderTotal.toFixed(2);
+        cartItems.innerHTML = cartHTML;
+        totalPrice.innerText = total.toFixed(2);
     } catch (error) {
-        Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: "Failed to load cart. Please try again later.",
-        });
+        console.error("Error fetching cart:", error);
     }
 }
 
-// Show Payment Card on Checkout
-document.getElementById("checkout-btn").addEventListener("click", function () {
+// ✅ Proceed to Payment
+checkoutBtn.addEventListener("click", function () {
     let paymentMethod = document.getElementById("payment-method").value;
-    let orderTotal = document.getElementById("order-total").innerText;
+    let orderTotal = totalPrice.innerText;
 
     if (!paymentMethod) {
         Swal.fire({
@@ -177,21 +176,17 @@ document.getElementById("checkout-btn").addEventListener("click", function () {
     document.getElementById("payment-card").classList.add("show");
 });
 
-// Close Payment Card
-document.getElementById("close-payment").addEventListener("click", function () {
-    document.getElementById("payment-card").classList.remove("show");
-});
-
-// Confirm Payment and Clear Cart
+// ✅ Confirm Payment and Clear Cart
 document.getElementById("confirm-payment").addEventListener("click", async function () {
     try {
-        // Get reference to the cart collection
-        const cartRef = collection(db, "cart");
+        const user = auth.currentUser;
+        if (!user) return;
+
+        const cartRef = collection(db, "users", user.uid, "cart");
         const querySnapshot = await getDocs(cartRef);
 
-        // Delete each cart item
         querySnapshot.forEach(async (docSnap) => {
-            await deleteDoc(doc(db, "cart", docSnap.id));
+            await deleteDoc(doc(db, "users", user.uid, "cart", docSnap.id));
         });
 
         Swal.fire({
