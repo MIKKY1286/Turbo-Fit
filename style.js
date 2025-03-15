@@ -34,10 +34,10 @@ const auth = getAuth(app);
 // Select Elements
 const loginSignup = document.getElementById("loginSignup");
 const logoutBtn = document.getElementById("logoutBtn");
-const cartCount = document.getElementById("cart-count"); // Cart count badge
+const cartCount = document.getElementById("cart-count"); 
 const cartItems = document.getElementById("cart-items");
 const checkoutBtn = document.getElementById("checkout-btn");
-const totalPrice = document.getElementById("total-price");
+const orderTotal = document.getElementById("order-total"); 
 
 // Function to Update Cart Count
 async function updateCartCount() {
@@ -51,7 +51,7 @@ async function updateCartCount() {
         let count = 0;
         querySnapshot.forEach(docSnap => {
             let product = docSnap.data();
-            count += product.quantity || 1; // Count total items in cart
+            count += product.quantity || 1;
         });
 
         cartCount.textContent = count;
@@ -68,8 +68,8 @@ document.addEventListener("DOMContentLoaded", () => {
             if (loginSignup) loginSignup.style.display = "none";
             if (logoutBtn) logoutBtn.style.display = "block";
 
-            await updateCartCount(); // Update cart count when user logs in
-            await fetchCart(); // Fetch cart only when user is logged in
+            await updateCartCount();
+            await fetchCart();
         } else {
             console.log("User is logged out");
             if (loginSignup) loginSignup.style.display = "block";
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (cartCount) cartCount.textContent = "0";
             if (cartItems) cartItems.innerHTML = `<p class="empty-cart">Your cart is empty 🛒</p>`;
             if (checkoutBtn) checkoutBtn.style.display = "none";
-            if (totalPrice) totalPrice.innerText = "0.00";
+            if (orderTotal) orderTotal.innerText = "0.00";
         }
     });
 });
@@ -107,14 +107,14 @@ if (logoutBtn) {
     });
 }
 
-// ✅ Fetch Cart Data for Logged-in User
+// ✅ Fetch Cart Data
 async function fetchCart() {
     const user = auth.currentUser;
     if (!user || !cartItems) return;
 
     try {
-        const userCartRef = collection(db, "users", user.uid, "cart");
-        const querySnapshot = await getDocs(userCartRef);
+        const cartRef = collection(db, "users", user.uid, "cart");
+        const querySnapshot = await getDocs(cartRef);
 
         let total = 0;
         let cartHTML = "";
@@ -122,7 +122,7 @@ async function fetchCart() {
         if (querySnapshot.empty) {
             cartItems.innerHTML = `<p class="empty-cart">Your cart is empty 🛒</p>`;
             if (checkoutBtn) checkoutBtn.style.display = "none";
-            if (totalPrice) totalPrice.innerText = "0.00";
+            if (orderTotal) orderTotal.innerText = "0.00";
             return;
         } else {
             checkoutBtn.style.display = "block";
@@ -130,7 +130,6 @@ async function fetchCart() {
 
         querySnapshot.forEach((docSnap) => {
             let product = docSnap.data();
-            let productId = docSnap.id;
             let price = parseFloat(product.price) || 0;  
             let quantity = product.quantity || 1;
             let subtotal = price * quantity; 
@@ -151,7 +150,7 @@ async function fetchCart() {
         });
 
         cartItems.innerHTML = cartHTML;
-        totalPrice.innerText = total.toFixed(2);
+        orderTotal.innerText = total.toFixed(2);
     } catch (error) {
         console.error("Error fetching cart:", error);
     }
@@ -160,7 +159,7 @@ async function fetchCart() {
 // ✅ Proceed to Payment
 checkoutBtn.addEventListener("click", function () {
     let paymentMethod = document.getElementById("payment-method").value;
-    let orderTotal = totalPrice.innerText;
+    let totalAmount = orderTotal.innerText;
 
     if (!paymentMethod) {
         Swal.fire({
@@ -172,11 +171,11 @@ checkoutBtn.addEventListener("click", function () {
     }
 
     document.getElementById("selected-method").innerText = paymentMethod;
-    document.getElementById("final-amount").innerText = `$${orderTotal}`;
+    document.getElementById("final-amount").innerText = `$${totalAmount}`;
     document.getElementById("payment-card").classList.add("show");
 });
 
-// Select the cancel button and payment card
+// Cancel Payment
 const closePaymentBtn = document.getElementById("close-payment");
 const paymentCard = document.getElementById("payment-card");
 
@@ -185,7 +184,6 @@ if (closePaymentBtn && paymentCard) {
         paymentCard.classList.remove("show"); 
     });
 }
-
 
 // ✅ Confirm Payment and Clear Cart
 document.getElementById("confirm-payment").addEventListener("click", async function () {
@@ -202,8 +200,8 @@ document.getElementById("confirm-payment").addEventListener("click", async funct
 
         Swal.fire({
             icon: "success",
-            title: "Payment Successful!",
-            text: "Your order has been placed successfully 🎉",
+            title: "Payment Successful! 🎉",
+            text: "Your order has been placed successfully.",
             timer: 3000,
             showConfirmButton: false
         });
@@ -211,7 +209,10 @@ document.getElementById("confirm-payment").addEventListener("click", async funct
         setTimeout(() => {
             document.getElementById("payment-card").classList.remove("show");
             window.location.href = "../index.html"; 
-        }, 4000);
+        }, 3000);
+
+        await updateCartCount();
+        await fetchCart();
     } catch (error) {
         Swal.fire({
             icon: "error",
